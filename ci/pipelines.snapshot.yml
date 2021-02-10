@@ -18,7 +18,7 @@ pipelines:
           inputResources:
             - name: jenkinsSnapshotGit
           integrations:
-            - name: ojo
+            - name: art
         execution:
           onStart:
             - *UPDATE_COMMIT_STATUS
@@ -36,10 +36,10 @@ pipelines:
             - curl -fL https://getcli.jfrog.io | sh && chmod +x jfrog
 
             # Configure JFrog CLI
-            - ./jfrog rt c ojo --url $int_ojo_rt_url --access-token=$int_ojo_rt_token
+            - ./jfrog rt c art --url $int_art_rt_url --access-token=$int_art_rt_token
             - ./jfrog rt mvnc
-              --server-id-resolve ojo --repo-resolve-releases libs-release --repo-resolve-snapshots libs-snapshot
-              --server-id-deploy ojo --repo-deploy-releases oss-release-local --repo-deploy-snapshots oss-snapshot-local
+              --server-id-resolve art --repo-resolve-releases libs-release --repo-resolve-snapshots libs-snapshot
+              --server-id-deploy art --repo-deploy-releases oss-release-local --repo-deploy-snapshots oss-snapshot-local
 
             # Run install and publish
             - >
@@ -49,6 +49,7 @@ pipelines:
               ./jfrog rt mvn clean install -U -B javadoc:jar source:jar
             - ./jfrog rt bag
             - ./jfrog rt bp
+            - ./jfrog rt bs
 
           onComplete:
             - *UPDATE_COMMIT_STATUS
@@ -58,3 +59,5 @@ pipelines:
 
             # Save .m2 cache
             - add_cache_files ${HOME}/.m2 m2_home
+            
+            
