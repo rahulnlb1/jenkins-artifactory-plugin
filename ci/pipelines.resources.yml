@@ -10,12 +10,3 @@ resources:
         include: master
       cancelPendingRunsOn:
         pullRequestUpdate: true
-
-  - name: jenkinsReleaseGit
-    type: GitRepo
-    configuration:
-      path: jfrog/jenkins-artifactory-plugin
-      gitProvider: github
-      buildOn:
-        commit: false
-
