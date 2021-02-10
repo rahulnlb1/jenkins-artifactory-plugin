@@ -38,7 +38,6 @@ pipelines:
             # Configure JFrog CLI
             - ./jfrog rt c art --url $int_art_rt_url --access-token=$int_art_rt_token
             - ./jfrog rt mvnc
-              --server-id-resolve art --repo-resolve-releases libs-release --repo-resolve-snapshots libs-snapshot
               --server-id-deploy art --repo-deploy-releases oss-release-local --repo-deploy-snapshots oss-snapshot-local
 
             # Run install and publish
