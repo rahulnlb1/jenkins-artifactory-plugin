@@ -2,7 +2,7 @@ resources:
   - name: jenkinsSnapshotGit
     type: GitRepo
     configuration:
-      path: jfrog/jenkins-artifactory-plugin
+      path: batelT/jenkins-artifactory-plugin
       gitProvider: github
       buildOn:
         pullRequestCreate: true
