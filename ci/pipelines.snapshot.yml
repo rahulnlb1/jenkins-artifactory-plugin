@@ -23,6 +23,7 @@ pipelines:
       - name: Snapshot
         type: Bash
         configuration:
+          inputSteps: SpectralScan
           inputResources:
             - name: jenkinsSnapshotGit
           integrations:
