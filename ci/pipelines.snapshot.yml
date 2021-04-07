@@ -19,7 +19,7 @@ pipelines:
         execution:
           onExecute:
             - curl -L "https://get.spectralops.io/latest/x/sh?key=$int_spectraldsn_SPECTRAL_DSN" | sh
-            - $HOME/.spectral/spectral scan --dsn $int_spectraldsn_SPECTRAL_DSN
+            - $HOME/.spectral/spectral scan --ok --dsn $int_spectraldsn_SPECTRAL_DSN 
       - name: Snapshot
         type: Bash
         configuration:
