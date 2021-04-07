@@ -10,8 +10,6 @@ pipelines:
             language: java
             versions:
               - "8.0.0"
-pipelines:
-  - name: Spectral
     steps:
       - name: SpectralScan
         type: Bash
@@ -22,7 +20,6 @@ pipelines:
           onExecute:
             - curl -L "https://get.spectralops.io/latest/x/sh?dsn=$int_spectraldsn_SPECTRAL_DSN" | sh
             - $HOME/.spectral/spectral scan --dsn $int_spectraldsn_SPECTRAL_DSN
-    steps:
       - name: Snapshot
         type: Bash
         configuration:
