@@ -35,16 +35,13 @@ pipelines:
             - restore_cache_files m2_home ${HOME}/.m2
           onExecute:
             - cd $res_jenkinsSnapshotGit_resourcePath
-
             # Set env
             - export CI=true
             - MVN_PATH=`which mvn` && export M2_HOME=`readlink -f $MVN_PATH | xargs dirname | xargs dirname`
             - export JFROG_CLI_BUILD_NAME=jenkins-plugin-dev
             - export JFROG_CLI_BUILD_NUMBER=$run_number
-
             # Download JFrog CLI
-            - curl -fL https://getcli.jfrog.io | sh && chmod +x jfrog
-
+            - curl -fL https://getcli.jfrog.io | sh +x jfrog
             # Configure JFrog CLI
             - ./jfrog rt c art --url $int_art_rt_url --access-token=$int_art_rt_token
             - ./jfrog rt mvnc
